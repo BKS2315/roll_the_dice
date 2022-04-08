@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            display: flex;
+            font-size: 30px; 
+        }
+        #container>div{
+            width: 20%;
+            height: 200px;
+            border: 1px solid;
+            display: flex;
+            font-size: 45px;
+            font-weight: bold;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            
+            
+        }
+        #roll{
+            cursor: pointer;
+            width: 190px;
+            height: 50px;
+            font-size: 17px;
+            display: flex;
+            align-items: center;
+            margin: 30px 10px 0px 500px;
+            border-radius: 15px;
+            background-color: blue;
+            color: white;
+            /* font-weight: bold; */
+            border: 0px;
+            padding: 10px 0px 10px 25px ;
+            text-align: center;
+        }
+        #winner{
+            width: 60%;
+            height: 100px;
+            border: 1px solid;
+            display: flex;
+            font-size: 40px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            
+        }
+        *{
+           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color:rgb(207, 246, 248);
+        }
+        #text{
+            position: absolute;
+            background-color: transparent;
+            font-size: 25px;
+            top: 8px;
+            left: 550px;
+        }
+        #text1{
+            position: absolute;
+            background-color: transparent;
+            font-size: 45px;
+            top: 112px;
+            left: 180px;
+            
+        }
+        #text2{
+            position: absolute;
+            background-color: transparent;
+            font-size: 45px;
+            top: 112px;
+            left: 560px;
+           
+        }
+        #text3{
+            position: absolute;
+            background-color: transparent;
+            font-size: 45px;
+            top: 112px;
+            left: 950px;
+            
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="winner">  </div>
+    <div id="text">winner</div>
+    <div id="text1">A</div>
+    <div id="text2">B</div>
+    <div id="text3">C</div>
+    <div id="container">
+        <div id="member-1"></div>
+        <div id="member-2"></div>
+        <div id="member-3"></div>
+    </div>
+  
+  <button id="roll">ROLL THE DICE</button>
+
+</body>
+</html>
+<script>
+    document.querySelector("#roll").addEventListener("click",myfnc);
+    
+    function myfnc (){
+
+        var f1=document.querySelector("#member-1");
+        // f1.value = null;
+        f1.value = Math.floor(Math.random() * 6) + 1;
+        f1.innerText=f1.value;
+        // f1.value=f1;
+    
+        var f2=document.querySelector("#member-2");
+        // f2.value = null;
+        f2.value=Math.floor(Math.random() * 6) + 1;
+        f2.innerText= f2.value;
+
+
+        var f3=document.querySelector("#member-3");
+        // f3.value = null;
+        f3.value=Math.floor(Math.random() * 6) + 1;
+        f3.innerText=f3.value;
+        // var arr=[];
+        // let a = f1.value;
+
+
+        console.log("A :"+f1.value)
+        console.log("B :"+f2.value)
+        console.log("C :"+f3.value)
+      var win=document.querySelector("#winner");
+        if (f1.value>f2.value && f1.value>f3.value){
+            f1.style.backgroundColor="green";
+            win.innerText="A is the winner"
+            if(f2.value>f3.value){
+                f2.style.backgroundColor="yellow";
+                f3.style.backgroundColor="red";
+            }
+            if(f2.value<f3.value){
+                f3.style.backgroundColor="yellow";
+                f2.style.backgroundColor="red";
+            }
+            if(f2.value===f3.value){
+                f3.style.backgroundColor="aqua";
+                f2.style.backgroundColor="aqua";
+            }
+
+            // console.log("sec"+second)
+        }
+         if (f2.value>f1.value && f2.value>f3.value){
+            f2.style.backgroundColor="green";
+            win.innerText="B is the winner";
+            if(f1.value>f3.value){
+                f1.style.backgroundColor="yellow";
+                f3.style.backgroundColor="red";
+            }
+            if(f1.value<f3.value){
+                f3.style.backgroundColor="yellow";
+                f1.style.backgroundColor="red";
+            }
+            if(f1.value===f3.value){
+                f3.style.backgroundColor="aqua";
+                f1.style.backgroundColor="aqua";
+            }
+        }
+        if (f3.value>f1.value && f3.value>f2.value){
+            f3.style.backgroundColor="green";
+            win.innerText="C is the winner";
+            if(f2.value>f1.value){
+                f2.style.backgroundColor="yellow";
+                f1.style.backgroundColor="red";
+            }
+            if(f2.value<f1.value){
+                f1.style.backgroundColor="yellow";
+                f2.style.backgroundColor="red";
+            }
+            if(f1.value===f2.value){
+                f2.style.backgroundColor="aqua";
+                f1.style.backgroundColor="aqua";
+            }
+        }
+        if(f1.value===f2.value && f3.value<f1.value){
+            win.innerText="Tie between A and B"
+            f1.style.backgroundColor="aqua";
+            f2.style.backgroundColor="aqua";
+            f3.style.backgroundColor="red";
+        }
+        
+        if(f1.value===f3.value && f2.value<f1.value){
+            win.innerText="Tie between A and C"
+            f3.style.backgroundColor="aqua";
+            f1.style.backgroundColor="aqua";
+            f2.style.backgroundColor="red";
+            
+        }
+       
+        if(f3.value===f2.value && f3.value>f1.value){
+            win.innerText="Tie between C and B"
+            f3.style.backgroundColor="aqua";
+            f2.style.backgroundColor="aqua";
+            f1.style.backgroundColor="red";
+        }
+        if(f3.value===f2.value && f1.value===f2.value){
+            win.innerText="Tie between A ,B and C"
+            f2.style.backgroundColor="aqua";
+            f1.style.backgroundColor="aqua";
+            f3.style.backgroundColor="aqua";
+        }
+        
+
+    }
+    
+   
+    
+</script>
